@@ -5,23 +5,7 @@
     
     <!-- Main Content -->
     <div class="flex-1 sm:ml-64">
-        <!-- Top Bar -->
-        <div class="bg-white shadow-sm border-b border-gray-200">
-            <div class="px-4 sm:px-6 lg:px-8 py-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <button id="toggleSidebar" class="sm:hidden mr-4 text-gray-600">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                        <h1 class="text-2xl font-bold text-primary-dark">Dashboard</h1>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <i class="far fa-calendar-alt mr-2"></i>
-                        <?php echo date('d F Y'); ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php require_once '../app/views/layouts/topbar.php'; ?>
 
         <!-- Dashboard Content -->
         <div class="p-4 sm:p-6 lg:p-8">
@@ -104,6 +88,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>

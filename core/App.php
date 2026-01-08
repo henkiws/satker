@@ -2,17 +2,23 @@
 
 class App {
     protected $controller = 'AuthController';
-    protected $method = 'login';
+    protected $method = 'index';  // Changed from 'login' to 'index'
     protected $params = [];
 
     public function __construct() {
         $url = $this->parseURL();
+        
+        // Debug: Log the parsed URL
+        error_log("Parsed URL: " . print_r($url, true));
+        error_log("Request Method: " . $_SERVER['REQUEST_METHOD']);
         
         // Check if controller exists
         if(isset($url[0]) && file_exists('../app/controllers/' . ucfirst($url[0]) . 'Controller.php')) {
             $this->controller = ucfirst($url[0]) . 'Controller';
             unset($url[0]);
         }
+        
+        error_log("Loading controller: " . $this->controller);
         
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -25,6 +31,8 @@ class App {
             }
         }
         
+        error_log("Calling method: " . $this->method);
+        
         // Get params
         $this->params = $url ? array_values($url) : [];
         
@@ -33,18 +41,29 @@ class App {
     }
     
     public function parseURL() {
-        if(isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
-            return $url;
+        // Get the request URI
+        $requestUri = $_SERVER['REQUEST_URI'];
+        error_log("Request URI: " . $requestUri);
+        
+        // Remove query string
+        $requestUri = strtok($requestUri, '?');
+        
+        // Remove leading slash
+        $requestUri = ltrim($requestUri, '/');
+        
+        if(empty($requestUri)) {
+            // Default route - check if user is logged in
+            if(Auth::check()) {
+                return ['dashboard', 'index'];  // Add 'index' method
+            } else {
+                return ['auth', 'login'];
+            }
         }
         
-        // Default route - check if user is logged in
-        if(Auth::check()) {
-            return ['dashboard'];
-        } else {
-            return ['auth', 'login'];
-        }
+        // Split URL into segments
+        $url = explode('/', $requestUri);
+        error_log("URL segments: " . print_r($url, true));
+        
+        return $url;
     }
 }

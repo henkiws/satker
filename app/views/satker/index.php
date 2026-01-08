@@ -6,24 +6,29 @@
     <!-- Main Content -->
     <div class="flex-1 sm:ml-64">
         <!-- Top Bar -->
-        <div class="bg-white shadow-sm border-b border-gray-200">
-            <div class="px-4 sm:px-6 lg:px-8 py-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <button id="toggleSidebar" class="sm:hidden mr-4 text-gray-600">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                        <h1 class="text-2xl font-bold text-primary-dark">Data Satker</h1>
-                    </div>
-                    <a href="<?php echo BASE_URL; ?>/satker/create" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-all inline-flex items-center">
-                        <i class="fas fa-plus mr-2"></i>Tambah Satker
-                    </a>
-                </div>
-            </div>
-        </div>
+        <?php require_once '../app/views/layouts/topbar.php'; ?>
 
         <!-- Content -->
         <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-6" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="<?php echo BASE_URL; ?>/dashboard" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary">
+                            <i class="fas fa-home mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <span class="text-sm font-medium text-primary">Data Satker</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Flash Message -->
             <?php 
             $flash = Helper::getFlashMessage('satker_message');
             if($flash): 
@@ -35,6 +40,18 @@
                 </div>
             </div>
             <?php endif; ?>
+
+            <!-- Header Section with Add Button -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-primary-dark">Data Satker</h2>
+                    <p class="text-sm text-gray-600 mt-1">Kelola data Satuan Kerja</p>
+                </div>
+                <a href="<?php echo BASE_URL; ?>/satker/create" class="inline-flex items-center px-4 py-2.5 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg">
+                    <i class="fas fa-plus mr-2"></i>
+                    Tambah Satker
+                </a>
+            </div>
 
             <!-- Table Card -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden">

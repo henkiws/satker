@@ -39,7 +39,7 @@ CREATE TABLE ppbj (
 -- Username: admin
 -- Password: admin123
 INSERT INTO users (username, password, nama, email, role, is_active) 
-VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin@satker-ppbj.com', 'admin', 1);
+VALUES ('admin', '$2y$12$qdBX4.gHT2LbqzPJIUQ6IOCj/7Au0MtUjx56dRgY0dyHx.J6Z6/z.', 'Administrator', 'admin@mail.com', 'admin', 1);
 
 -- Sample data for satker (optional)
 INSERT INTO satker (kode, nama, alamat) VALUES

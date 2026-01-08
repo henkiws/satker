@@ -90,7 +90,7 @@
 
             <!-- Footer -->
             <div class="bg-gray-50 px-8 py-4 text-center text-sm text-gray-600">
-                <p>&copy; 2025 SATKER-PPBJ System. All rights reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> SATKER-PPBJ System. All rights reserved.</p>
             </div>
         </div>
     </div>
